@@ -1,0 +1,1819 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TSPF — The Supa Paper Frogs</title><meta name="description" content="TSPF — handmade origami paper frogs, folded one sheet at a time. Pick your colour, name your frog, and order online."><meta property="og:title" content="TSPF — The Supa Paper Frogs"><meta property="og:description" content="Handmade origami frogs that actually jump. Folded by hand, no glue, no scissors."><meta property="og:type" content="website"><meta property="og:site_name" content="TSPF — The Supa Paper Frogs"><meta property="og:url" content="https://jivanshdaru.github.io/the-supa-paper-frogs/"><meta property="og:image" content="https://jivanshdaru.github.io/the-supa-paper-frogs/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="A smiling green origami paper frog beside the words The Supa Paper Frogs."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="TSPF — The Supa Paper Frogs"><meta name="twitter:description" content="Handmade origami frogs that actually jump. Folded by hand, no glue, no scissors."><meta name="twitter:image" content="https://jivanshdaru.github.io/the-supa-paper-frogs/og-image.png"><meta name="theme-color" content="#4F9F6B"><link rel="canonical" href="https://jivanshdaru.github.io/the-supa-paper-frogs/"><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet"><style>
+  :root{
+    --paper:#F6EFD9;
+    --paper-dark:#EBE0C2;
+    --frog:#4F9F6B;
+    --frog-dark:#256B45;
+    --pond:#1E3D2F;
+    --pop:#FFC64B;
+    --pop-dark:#E8A317;
+    --ink:#22331E;
+    --white:#FFFDF6;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Quicksand', sans-serif;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(79,159,107,0.06) 0, transparent 45%),
+      radial-gradient(circle at 85% 60%, rgba(255,198,75,0.08) 0, transparent 40%);
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo 2', sans-serif;
+    color:var(--pond);
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  /* subtle paper texture strip */
+  .fold-line{
+    position:relative;
+  }
+  .fold-line::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:6px;
+    background:repeating-linear-gradient(90deg, var(--paper-dark) 0 18px, transparent 18px 26px);
+    opacity:0.6;
+  }
+
+  /* ===== NAV ===== */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,239,217,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:2px dashed rgba(30,61,47,0.25);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:74px;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Baloo 2'; font-weight:800; font-size:1.3rem; color:var(--frog-dark);}
+  .brand .dot{width:14px;height:14px;background:var(--pop); border-radius:50% 50% 50% 0; transform:rotate(45deg); display:inline-block;}
+  nav ul{display:flex; gap:28px; list-style:none;}
+  nav ul li a{
+    font-weight:700; font-size:0.95rem; color:var(--pond);
+    position:relative; padding:4px 2px;
+  }
+  nav ul li a::after{
+    content:""; position:absolute; left:0; bottom:-4px; width:0; height:3px;
+    background:var(--pop); transition:width .25s ease; border-radius:2px;
+  }
+  nav ul li a:hover::after{width:100%;}
+  @media (max-width:640px){ nav ul{gap:16px;} nav ul li a{font-size:0.82rem;} }
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:70px 0 40px;
+    position:relative;
+  }
+  .hero .wrap{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
+  }
+  @media (max-width:800px){ .hero .wrap{grid-template-columns:1fr; text-align:center;} }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--white); border:2px solid var(--frog);
+    color:var(--frog-dark); font-weight:700; font-size:0.82rem;
+    padding:6px 14px; border-radius:999px; margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.05;
+    font-weight:800;
+  }
+  .hero h1 .pop{color:var(--frog); position:relative; white-space:nowrap;}
+  .hero p.lede{
+    margin-top:18px; font-size:1.15rem; max-width:46ch; color:#3d4d38;
+  }
+  @media (max-width:800px){ .hero p.lede{margin-inline:auto;} }
+
+  .cta-row{margin-top:30px; display:flex; gap:14px; flex-wrap:wrap;}
+  @media (max-width:800px){ .cta-row{justify-content:center;} }
+  .btn{
+    font-family:'Baloo 2'; font-weight:700; font-size:1rem;
+    padding:14px 26px; border-radius:14px; border:3px solid var(--pond);
+    cursor:pointer; transition:transform .15s ease, box-shadow .15s ease;
+    display:inline-block;
+  }
+  .btn-solid{background:var(--pop); color:var(--ink); box-shadow:4px 4px 0 var(--pond);}
+  .btn-solid:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--pond);}
+  .btn-outline{background:transparent; color:var(--pond); box-shadow:4px 4px 0 var(--frog);}
+  .btn-outline:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--frog);}
+  .btn:disabled{opacity:0.5; cursor:not-allowed; transform:none !important; box-shadow:4px 4px 0 var(--pond) !important;}
+
+  /* hero frog stage */
+  .frog-stage{
+    position:relative; display:flex; align-items:center; justify-content:center;
+    min-height:320px;
+  }
+  .lilypad{
+    position:absolute; width:250px; height:250px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #6FBE8C, #2E7A4E 70%);
+    bottom:10px; opacity:0.9;
+  }
+  #origami-frog{ position:relative; width:230px; height:230px; animation:hop 2.6s ease-in-out infinite; transform-origin:bottom center;}
+  @keyframes hop{
+    0%, 100%{ transform:translateY(0) rotate(0deg); }
+    35%{ transform:translateY(-26px) rotate(-3deg); }
+    50%{ transform:translateY(-30px) rotate(0deg); }
+    65%{ transform:translateY(-26px) rotate(3deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    #origami-frog{animation:none;}
+  }
+
+  /* ===== SECTION HEADER PATTERN ===== */
+  .section{ padding:70px 0; }
+  .section-head{ text-align:center; max-width:640px; margin:0 auto 44px; }
+  .section-head .tag{
+    font-weight:700; color:var(--frog-dark); letter-spacing:0.06em; text-transform:uppercase; font-size:0.8rem;
+  }
+  .section-head h2{ font-size:clamp(1.7rem,3.4vw,2.4rem); margin-top:8px; }
+  .section-head p{ margin-top:12px; color:#4a5a44; font-size:1.02rem; }
+
+  /* ===== ABOUT ===== */
+  .about{ background:var(--white); border-top:2px dashed rgba(30,61,47,0.2); border-bottom:2px dashed rgba(30,61,47,0.2); }
+  .about-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media (max-width:760px){ .about-grid{grid-template-columns:1fr;} }
+  .fold-card{
+    background:var(--paper);
+    border:2px solid var(--frog);
+    border-radius:18px;
+    padding:26px 22px;
+    position:relative;
+    transition:transform .2s ease;
+  }
+  .fold-card:hover{ transform:translateY(-6px) rotate(-1deg); }
+  .fold-card .num{
+    font-family:'Baloo 2'; font-weight:800; font-size:1.6rem; color:var(--pop-dark);
+    display:block; margin-bottom:10px;
+  }
+  .fold-card h3{ font-size:1.1rem; margin-bottom:8px; }
+  .fold-card p{ font-size:0.95rem; color:#4a5a44; }
+
+  /* ===== PRODUCTS (POND) ===== */
+  .products{
+    background:linear-gradient(180deg, var(--paper) 0%, #DCEFE0 100%);
+  }
+  .pond{
+    position:relative;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:28px;
+  }
+  @media (max-width:760px){ .pond{grid-template-columns:1fr;} }
+  .frog-card{
+    background:var(--white);
+    border-radius:20px;
+    padding:26px 22px 22px;
+    text-align:center;
+    border:2px solid transparent;
+    box-shadow:0 6px 0 rgba(30,61,47,0.12);
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  .frog-card:hover{ transform:translateY(-8px); border-color:var(--pop); }
+  .frog-card .mini-frog{ width:96px; height:96px; margin:0 auto 14px; }
+  .frog-card h3{ font-size:1.15rem; }
+  .frog-card .price{
+    display:inline-block; margin-top:10px; background:var(--pop); color:var(--ink);
+    font-family:'Baloo 2'; font-weight:700; padding:5px 16px; border-radius:999px; font-size:0.95rem;
+  }
+  .frog-card p.desc{ margin-top:10px; font-size:0.92rem; color:#4a5a44; }
+
+  /* ===== HOW IT'S MADE (fold steps) ===== */
+  .steps-row{
+    display:flex; gap:0; align-items:stretch; overflow-x:auto; padding-bottom:10px;
+    scrollbar-width:thin;
+  }
+  .step{
+    flex:1 1 0; min-width:170px; padding:22px 18px; position:relative;
+    background:var(--white); border-radius:16px; margin-right:16px;
+  }
+  .step:last-child{margin-right:0;}
+  .step .fold-num{
+    width:34px; height:34px; border-radius:8px; background:var(--frog); color:var(--white);
+    display:flex; align-items:center; justify-content:center; font-family:'Baloo 2'; font-weight:800;
+    transform:rotate(-6deg); margin-bottom:12px;
+  }
+  .step h3{font-size:1rem;}
+  .step p{font-size:0.88rem; color:#4a5a44; margin-top:6px;}
+
+  /* ===== TEAM ===== */
+  .team-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:22px;
+  }
+  @media (max-width:760px){ .team-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:420px){ .team-grid{grid-template-columns:1fr;} }
+  .team-card{
+    background:var(--white); border:2px dashed var(--frog); border-radius:20px;
+    padding:26px 18px; text-align:center;
+  }
+  .team-card .avatar{
+    width:70px; height:70px; border-radius:50%; background:var(--pop);
+    display:flex; align-items:center; justify-content:center; margin:0 auto 14px;
+    font-family:'Baloo 2'; font-weight:800; font-size:1.15rem; color:var(--ink);
+  }
+  .team-card h3{ font-size:1.1rem; }
+  .team-card .title-label{ color:var(--frog-dark); font-weight:700; font-size:0.85rem; margin-top:4px; }
+  .team-card .role{ color:#6b7a66; font-weight:600; font-size:0.82rem; margin-top:2px;}
+
+  /* ===== ORDER / CONTACT ===== */
+  .order{
+    background:var(--pond); color:var(--white); border-radius:28px; margin:0 24px;
+    padding:56px 32px; text-align:center; position:relative; overflow:hidden;
+  }
+  .order::before{
+    content:""; position:absolute; inset:0;
+    background-image:radial-gradient(circle, rgba(255,255,255,0.06) 1.5px, transparent 1.5px);
+    background-size:22px 22px;
+  }
+  .order-inner{position:relative; z-index:1;}
+  .order h2{ color:var(--white); font-size:clamp(1.6rem,3.5vw,2.2rem); }
+  .order p{ margin-top:12px; color:#cfe6d8; max-width:46ch; margin-inline:auto; }
+  .order .cta-row{ justify-content:center; margin-top:26px; }
+  .order .btn-solid{ box-shadow:4px 4px 0 var(--pop-dark); }
+  .order .btn-outline{ color:var(--white); border-color:var(--white); box-shadow:4px 4px 0 var(--frog); }
+  .cart-box .btn-outline, .frog-game .btn-outline{ color:var(--white); border-color:var(--white); box-shadow:4px 4px 0 var(--frog); }
+
+  footer{
+    text-align:center; padding:34px 24px; font-size:0.85rem; color:#5c6b56;
+  }
+  footer .brand{ justify-content:center; margin-bottom:6px; }
+
+  /* ===== TSPF LOGO ===== */
+  .tspf-logo{display:inline-flex;align-items:center;gap:9px;font-family:'Baloo 2';font-weight:800;color:var(--frog-dark);letter-spacing:.02em;}
+  .tspf-logo-mark{width:30px;height:30px;background:var(--pop);border:2px solid var(--pond);border-radius:45% 55% 45% 55%;display:inline-flex;align-items:center;justify-content:center;font-size:15px;box-shadow:2px 2px 0 var(--pond);transform:rotate(-5deg);}
+  .tspf-logo-mark::after{content:"🐸";transform:rotate(5deg);}
+  .tspf-logo-text{font-size:1.3rem;}
+  .footer-contact{margin-top:8px;font-weight:700;color:var(--frog-dark);}
+  .footer-contact a{text-decoration:underline;text-underline-offset:3px;}
+
+  /* ===== FAQ ===== */
+  .faq-grid{max-width:820px;margin:0 auto;display:grid;gap:14px;}
+  .faq-item{background:var(--white);border:2px solid var(--frog);border-radius:16px;overflow:hidden;}
+  .faq-item summary{cursor:pointer;list-style:none;padding:18px 22px;font-family:'Baloo 2';font-weight:800;font-size:1.05rem;color:var(--pond);display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:"+";font-size:1.5rem;color:var(--frog-dark);transition:transform .2s ease;}
+  .faq-item[open] summary::after{content:"−";}
+  .faq-answer{padding:0 22px 19px;color:#4a5a44;line-height:1.55;}
+
+  /* ===== CLICKABLE FROGS ===== */
+  .clickable-frog{cursor:pointer;}
+  .clickable-frog.jump{animation:clickHop .5s ease-out;}
+  @keyframes clickHop{
+    0%{transform:translateY(0) rotate(0deg);}
+    35%{transform:translateY(-55px) rotate(-8deg) scale(1.03);}
+    60%{transform:translateY(-45px) rotate(8deg) scale(1.03);}
+    100%{transform:translateY(0) rotate(0deg) scale(1);}
+  }
+  .frog-card .mini-frog{cursor:pointer;transition:transform .15s ease;}
+  .frog-card .mini-frog:hover{transform:scale(1.05) rotate(-2deg);}
+
+  /* ===== INTERACTIVE FROG SHOP ===== */
+  .frog-lab{background:var(--white);border:2px dashed rgba(30,61,47,.25);border-radius:24px;padding:30px;max-width:900px;margin:0 auto;}
+  .lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start;}
+  @media(max-width:760px){.lab-grid{grid-template-columns:1fr;}}
+  .lab-preview{background:var(--paper);border:2px solid var(--frog);border-radius:20px;padding:24px;text-align:center;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .lab-preview svg{width:180px;height:180px;transition:transform .2s ease;}
+  .frog-name-display{font-family:'Baloo 2';font-weight:800;font-size:1.35rem;color:var(--pond);margin-top:8px;}
+  .lab-controls{display:grid;gap:14px;}
+  .control-box{background:var(--paper);border-radius:16px;padding:16px;}
+  .control-box label{display:block;font-family:'Baloo 2';font-weight:800;margin-bottom:8px;}
+  .colour-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .colour-btn{border:2px solid var(--pond);width:34px;height:34px;border-radius:50%;cursor:pointer;position:relative;}
+  .colour-btn.selected{outline:3px solid var(--pop-dark);outline-offset:2px;}
+  .colour-btn.selected::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;text-shadow:0 0 2px rgba(0,0,0,.6);}
+  .name-input{width:100%;padding:11px 13px;border:2px solid var(--frog);border-radius:10px;font:600 1rem 'Quicksand';background:var(--white);}
+  .shop-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .cart-box{margin-top:20px;background:var(--pond);color:var(--white);border-radius:18px;padding:20px;}
+  .cart-box h3{color:var(--white);margin-bottom:10px;}
+  .cart-line{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.15);}
+  .cart-line-info{display:flex;flex-direction:column;gap:2px;}
+  .cart-line-swatch{color:#cfe6d8;font-size:0.85rem;}
+  .cart-line-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+  .remove-frog-btn{background:transparent;border:2px solid rgba(255,255,255,.4);color:var(--white);border-radius:8px;width:28px;height:28px;line-height:1;cursor:pointer;font-weight:800;font-size:1rem;flex-shrink:0;}
+  .remove-frog-btn:hover{background:rgba(255,255,255,.15);border-color:var(--white);}
+
+  /* ===== QUANTITY STEPPER ===== */
+  .qty-stepper{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.1);border-radius:10px;padding:3px;}
+  .qty-btn{
+    background:transparent;border:2px solid rgba(255,255,255,.4);color:var(--white);
+    border-radius:7px;width:26px;height:26px;line-height:1;cursor:pointer;
+    font-family:'Baloo 2';font-weight:800;font-size:1rem;flex-shrink:0;padding:0;
+  }
+  .qty-btn:hover:not(:disabled){background:rgba(255,255,255,.18);border-color:var(--white);}
+  .qty-btn:disabled{opacity:.35;cursor:not-allowed;}
+  .qty-value{font-family:'Baloo 2';font-weight:800;min-width:22px;text-align:center;}
+  .cart-total{font-family:'Baloo 2';font-size:1.25rem;margin-top:12px;display:flex;justify-content:space-between;}
+  .empty-cart{color:#cfe6d8;}
+  .summary-box{margin-top:18px;background:var(--pop);color:var(--ink);border-radius:16px;padding:18px;display:none;text-align:left;}
+  .summary-box.show{display:block;}
+  .summary-box h3{margin-bottom:8px;}
+  .random-result{margin-top:8px;font-weight:700;color:var(--frog-dark);min-height:22px;}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--pond);color:var(--white);font-family:'Baloo 2';font-weight:700;padding:12px 22px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s ease, transform .25s ease;z-index:100;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .copy-hint{font-size:0.85rem;color:#4a5a44;margin-top:8px;}
+
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+  /* ===== CHECKOUT MODAL ===== */
+  .checkout-backdrop{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(30,61,47,.72); backdrop-filter:blur(3px);
+    display:flex; align-items:flex-start; justify-content:center;
+    padding:24px 16px; overflow-y:auto;
+  }
+  .checkout-backdrop[hidden]{display:none;}
+  .checkout-modal{
+    background:var(--paper); border:3px solid var(--pond); border-radius:24px;
+    box-shadow:8px 8px 0 rgba(30,61,47,.35);
+    width:100%; max-width:620px; margin:auto;
+    padding:26px 26px 30px; position:relative;
+  }
+  @media (max-width:520px){ .checkout-modal{padding:20px 16px 24px; border-radius:18px;} }
+  .checkout-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
+  .checkout-head h2{font-size:clamp(1.4rem,4vw,1.8rem);}
+  .checkout-head p{margin-top:6px;color:#4a5a44;font-size:.95rem;}
+  .checkout-close{
+    background:var(--white); border:2px solid var(--pond); border-radius:10px;
+    width:36px; height:36px; flex-shrink:0; cursor:pointer;
+    font-family:'Baloo 2'; font-weight:800; font-size:1.1rem; color:var(--pond); line-height:1;
+  }
+  .checkout-close:hover{background:var(--pop);}
+  .checkout-review{
+    margin-top:18px; background:var(--pond); color:var(--white);
+    border-radius:18px; padding:18px 20px;
+  }
+  .checkout-review h3{color:var(--white); font-size:1.05rem; margin-bottom:6px;}
+  .checkout-review .cart-total{font-size:1.05rem;}
+  .checkout-empty{text-align:center;padding:10px 0;}
+  .checkout-empty p{color:#cfe6d8;margin-bottom:14px;}
+
+  .checkout-form{margin-top:20px; display:grid; gap:14px;}
+  .checkout-form h3{font-size:1.15rem;}
+  .field label{display:block;font-family:'Baloo 2';font-weight:800;margin-bottom:6px;color:var(--pond);}
+  .field .req{color:var(--pop-dark);}
+  .field textarea.name-input{resize:vertical;min-height:74px;font-family:'Quicksand',sans-serif;}
+  .field-error{display:none;margin-top:5px;font-size:.85rem;font-weight:700;color:#B23A2E;}
+  .field.invalid .field-error{display:block;}
+  .field.invalid .name-input{border-color:#B23A2E;}
+  .checkout-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;}
+  .checkout-note{font-size:.85rem;color:#4a5a44;margin-top:4px;}
+
+  .checkout-done{text-align:center;padding:10px 0 4px;}
+  .checkout-done .big-frog{font-size:3rem;line-height:1;display:block;margin-bottom:10px;}
+  .checkout-done h3{font-size:1.35rem;}
+  .checkout-done p{margin-top:10px;color:#4a5a44;}
+  .checkout-done .checkout-actions{justify-content:center;}
+
+  /* ===== FLY CATCHER GAME ===== */
+  .frog-game{max-width:900px;margin:0 auto;background:var(--pond);border-radius:24px;padding:24px;color:var(--white);overflow:hidden;}
+  .game-top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
+  .game-top h3{color:var(--white);}
+  .game-stats{display:flex;gap:18px;flex-wrap:wrap;}
+  .game-stat{font-family:'Baloo 2';font-size:1.05rem;}
+  .game-stat span{color:var(--pop);}
+  .game-board{
+    height:320px;background:linear-gradient(#bfe8d0 0 68%,#75b77f 68% 100%);
+    border-radius:18px;position:relative;overflow:hidden;border:3px solid var(--white);
+    cursor:crosshair;touch-action:none;
+  }
+  .game-board:focus-visible{ outline:3px solid var(--pop); outline-offset:2px; }
+  .game-board .lily{position:absolute;width:74px;height:35px;background:#3d9157;border-radius:50%;bottom:14px;box-shadow:inset -8px -3px 0 rgba(0,0,0,.12);opacity:0.85;}
+  .game-board .glily1{left:10%;} .game-board .glily2{left:42%;bottom:20px;} .game-board .glily3{left:74%;bottom:10px;}
+  .catcher-frog{
+    position:absolute; left:50%; bottom:16px; width:76px; height:76px;
+    font-size:52px; line-height:76px; text-align:center; transform:translateX(-50%);
+    filter:drop-shadow(0 3px 2px rgba(0,0,0,.2)); pointer-events:none; transition:transform .12s ease;
+  }
+  .catcher-frog.lick{ transform:translateX(-50%) scale(1.12); }
+  .fly{
+    position:absolute; font-size:26px; cursor:pointer; user-select:none;
+    filter:drop-shadow(0 2px 2px rgba(0,0,0,.2));
+    transition:transform .12s ease, opacity .15s ease;
+    animation:flybob 1.6s ease-in-out infinite;
+  }
+  .fly:hover{ transform:scale(1.15); }
+  .fly.zapped{ animation:none; transform:scale(1.6); opacity:0; transition:transform .18s ease, opacity .18s ease; }
+  @keyframes flybob{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-10px); }
+  }
+  .game-message{text-align:center;margin-top:12px;color:#cfe6d8;min-height:24px;font-weight:700;}
+  .game-help{text-align:center;margin-top:7px;font-size:.85rem;color:#a9cdb8;}
+  .game-overlay{
+    position:absolute; inset:0; background:rgba(30,61,47,0.88);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:20px; gap:10px; border-radius:15px;
+  }
+  .game-overlay h3{ color:var(--white); font-size:1.4rem; }
+  .game-overlay p{ color:#cfe6d8; }
+  .game-overlay.hidden{ display:none; }
+  @media (max-width:520px){ .game-board{height:280px;} }
+  .game-overlay input.name-input{ margin:4px 0; }
+
+  .leaderboard-box{ margin-top:22px; background:rgba(255,255,255,0.06); border:2px dashed rgba(255,255,255,0.25); border-radius:16px; padding:20px; }
+  .leaderboard-box h3{ color:var(--white); font-size:1.1rem; }
+  .leaderboard-note{ color:#a9cdb8; font-size:0.82rem; margin-top:4px; margin-bottom:12px; }
+  .leaderboard-list{ list-style:none; display:grid; gap:6px; }
+  .leaderboard-list li{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:9px 14px; background:rgba(255,255,255,0.07); border-radius:10px; font-weight:600;
+  }
+  .leaderboard-list li.you{ background:var(--pop); color:var(--ink); }
+  .leaderboard-rank{ font-family:'Baloo 2'; font-weight:800; color:var(--pop); width:26px; flex-shrink:0; }
+  .leaderboard-list li.you .leaderboard-rank{ color:var(--frog-dark); }
+  .leaderboard-name{ flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .leaderboard-score{ font-family:'Baloo 2'; font-weight:800; }
+  .leaderboard-empty{ color:#a9cdb8; font-weight:500; background:transparent !important; justify-content:center; }
+  </style></head><body><nav>
+  <div class="wrap">
+    <div class="brand tspf-logo"><span class="tspf-logo-mark"></span><span class="tspf-logo-text">TSPF</span></div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#made">How It's Made</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#frog-lab">Frog Lab</a></li>
+      <li><a href="#game">Game</a></li>
+      <li><a href="#order">Order</a></li>
+    </ul>
+  </div></nav><header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">🐸 Since 2026</span>
+      <h1>We fold paper into<br><span class="pop">Supa</span> Paper Frogs.</h1>
+      <p class="lede">TSPF is a tiny company with a big jump — handmade origami frogs, folded one sheet at a time and built to leap further than anyone else's.</p>
+      <div class="cta-row">
+        <a href="#products" class="btn btn-solid">See the Frogs</a>
+        <button id="hero-order-btn" type="button" class="btn btn-outline">Order One</button>
+      </div>
+    </div>
+    <div class="frog-stage">
+      <div class="lilypad"></div>
+      <svg id="origami-frog" class="clickable-frog" role="button" tabindex="0" aria-label="Make the frog jump" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- back legs -->
+        <polygon points="40,150 10,185 55,165" fill="#256B45"/>
+        <polygon points="160,150 190,185 145,165" fill="#256B45"/>
+        <!-- body (folded diamond) -->
+        <polygon points="100,60 165,140 100,190 35,140" fill="#4F9F6B"/>
+        <polygon points="100,60 165,140 100,120" fill="#5FB57D"/>
+        <polygon points="100,60 35,140 100,120" fill="#3E8A58"/>
+        <!-- front legs -->
+        <polygon points="70,175 55,200 90,190" fill="#256B45"/>
+        <polygon points="130,175 145,200 110,190" fill="#256B45"/>
+        <!-- head fold -->
+        <polygon points="60,55 140,55 100,10" fill="#5FB57D"/>
+        <polygon points="60,55 100,10 100,55" fill="#4F9F6B"/>
+        <!-- eyes -->
+        <circle cx="78" cy="42" r="9" fill="#FFFDF6"/>
+        <circle cx="122" cy="42" r="9" fill="#FFFDF6"/>
+        <circle cx="79" cy="43" r="4" fill="#22331E"/>
+        <circle cx="121" cy="43" r="4" fill="#22331E"/>
+      </svg>
+    </div>
+  </div></header><section class="about section fold-line" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">The Story</span>
+      <h2>Why frogs? Why paper?</h2>
+      <p>It started with one folded sheet on a rainy recess. Now TSPF makes frogs for desks, gifts, and classroom trades — every single one folded by hand, no glue, no scissors.</p>
+    </div>
+    <div class="about-grid">
+      <div class="fold-card">
+        <span class="num">01</span>
+        <h3>100% Paper</h3>
+        <p>Just square sheets, folded into shape. Recycled paper whenever we can find it.</p>
+      </div>
+      <div class="fold-card">
+        <span class="num">02</span>
+        <h3>Actually Jumps</h3>
+        <p>Press the back fold and — boing — every TSPF frog hops. That's the whole point.</p>
+      </div>
+      <div class="fold-card">
+        <span class="num">03</span>
+        <h3>Made at Recess</h3>
+        <p>Small batches, folded between classes. Some weeks we sell out fast.</p>
+      </div>
+    </div>
+  </div></section><section class="products section" id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">The Lineup</span>
+      <h2>Pick your frog</h2>
+      <p>Two folds. Pick your frog.</p>
+    </div>
+    <div class="pond" style="grid-template-columns:repeat(2,1fr); max-width:640px; margin:0 auto;">
+
+      <div class="frog-card">
+        <svg class="mini-frog clickable-frog" role="button" tabindex="0" aria-label="Make this frog jump" viewBox="0 0 200 200"><polygon points="40,150 10,185 55,165" fill="#256B45"/><polygon points="160,150 190,185 145,165" fill="#256B45"/><polygon points="100,60 165,140 100,190 35,140" fill="#4F9F6B"/><polygon points="100,60 165,140 100,120" fill="#5FB57D"/><polygon points="100,60 35,140 100,120" fill="#3E8A58"/><polygon points="60,55 140,55 100,10" fill="#5FB57D"/><polygon points="60,55 100,10 100,55" fill="#4F9F6B"/><circle cx="78" cy="42" r="9" fill="#fff"/><circle cx="122" cy="42" r="9" fill="#fff"/><circle cx="79" cy="43" r="4" fill="#22331E"/><circle cx="121" cy="43" r="4" fill="#22331E"/></svg>
+        <h3>The Classic</h3>
+        <p class="desc">Our original fold. Comes in any colour you want — you pick the paper.</p>
+        <span class="price">1 A4/A5 paper</span>
+      </div>
+
+      <div class="frog-card">
+        <svg class="mini-frog clickable-frog" role="button" tabindex="0" aria-label="Make this frog jump" viewBox="0 0 200 200"><polygon points="40,150 10,185 55,165" fill="#B8860B"/><polygon points="160,150 190,185 145,165" fill="#B8860B"/><polygon points="100,60 165,140 100,190 35,140" fill="#FFC64B"/><polygon points="100,60 165,140 100,120" fill="#FFD97A"/><polygon points="100,60 35,140 100,120" fill="#E8A317"/><polygon points="60,55 140,55 100,10" fill="#FFD97A"/><polygon points="60,55 100,10 100,55" fill="#FFC64B"/><circle cx="78" cy="42" r="9" fill="#fff"/><circle cx="122" cy="42" r="9" fill="#fff"/><circle cx="79" cy="43" r="4" fill="#22331E"/><circle cx="121" cy="43" r="4" fill="#22331E"/></svg>
+        <h3>The Supa Jumper</h3>
+        <p class="desc">Extra-strong spring fold. Jumps higher and further than the Classic.</p>
+        <span class="price">2 A4/A5 papers</span>
+      </div>
+
+    </div>
+  </div></section><section class="section" id="made">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Behind The Fold</span>
+      <h2>How a TSPF frog gets made</h2>
+      <p>Four folds. No glue. About ninety seconds start to finish.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step">
+        <span class="fold-num">1</span>
+        <h3>Pick the paper</h3>
+        <p>One square sheet, color chosen for the batch.</p>
+      </div>
+      <div class="step">
+        <span class="fold-num">2</span>
+        <h3>Fold the body</h3>
+        <p>Diagonal creases build the diamond-shaped body.</p>
+      </div>
+      <div class="step">
+        <span class="fold-num">3</span>
+        <h3>Shape the legs</h3>
+        <p>Back legs get the special zig-zag spring fold.</p>
+      </div>
+      <div class="step">
+        <span class="fold-num">4</span>
+        <h3>Test the jump</h3>
+        <p>Every frog gets pressed and tested before it's sold.</p>
+      </div>
+    </div>
+  </div></section><section class="section team-section" style="padding-top:20px;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Who Folds It</span>
+      <h2>Meet the team</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">A</div>
+        <h3>Aarkit</h3>
+        <div class="title-label">CEO</div>
+        <div class="role">Founder</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">J</div>
+        <h3>Jivansh</h3>
+        <div class="title-label">CFO</div>
+        <div class="role">Co-Founder</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">H</div>
+        <h3>Harshan</h3>
+        <div class="title-label">Advertiser</div>
+        <div class="role">Co-Founder</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">V</div>
+        <h3>Vanij</h3>
+        <div class="title-label">Chief Folder</div>
+        <div class="role">Co-Founder</div>
+      </div>
+    </div>
+  </div></section><section class="section" id="frog-lab">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Make Your Own</span>
+      <h2>🐸 TSPF Frog Lab</h2>
+      <p>Pick a colour, select Classic or Supa Jumper, name your frog, and add it to your cart!</p>
+    </div>
+
+    <div class="frog-lab">
+      <div class="lab-grid">
+        <div class="lab-preview">
+          <svg id="custom-frog" viewBox="0 0 200 200" aria-label="Your custom frog">
+            <polygon points="40,150 10,185 55,165" fill="#256B45"/>
+            <polygon points="160,150 190,185 145,165" fill="#256B45"/>
+            <polygon id="custom-body" points="100,60 165,140 100,190 35,140" fill="#4F9F6B"/>
+            <polygon id="custom-light" points="100,60 165,140 100,120" fill="#5FB57D"/>
+            <polygon id="custom-dark" points="100,60 35,140 100,120" fill="#3E8A58"/>
+            <polygon id="custom-head-light" points="60,55 140,55 100,10" fill="#5FB57D"/>
+            <polygon id="custom-head" points="60,55 100,10 100,55" fill="#4F9F6B"/>
+            <circle cx="78" cy="42" r="9" fill="#FFFDF6"/>
+            <circle cx="122" cy="42" r="9" fill="#FFFDF6"/>
+            <circle cx="79" cy="43" r="4" fill="#22331E"/>
+            <circle cx="121" cy="43" r="4" fill="#22331E"/>
+          </svg>
+          <div class="frog-name-display">Meet <span id="frog-name-preview">Your Frog</span>!</div>
+        </div>
+
+        <div class="lab-controls">
+          <div class="control-box">
+            <label for="frog-type-select">🚀 Pick Model</label>
+            <select id="frog-type-select" class="name-input">
+              <option value="Classic" data-sheets="1">The Classic (1 Paper)</option>
+              <option value="Supa Jumper" data-sheets="2">The Supa Jumper (2 Papers)</option>
+            </select>
+          </div>
+
+          <div class="control-box">
+            <label>🌈 Pick a colour</label>
+            <div class="colour-row">
+              <button class="colour-btn selected" style="background:#4F9F6B" data-colour="#4F9F6B" aria-label="Green"></button>
+              <button class="colour-btn" style="background:#FFC64B" data-colour="#FFC64B" aria-label="Yellow"></button>
+              <button class="colour-btn" style="background:#FF8FA3" data-colour="#FF8FA3" aria-label="Pink"></button>
+              <button class="colour-btn" style="background:#6FA8FF" data-colour="#6FA8FF" aria-label="Blue"></button>
+              <button class="colour-btn" style="background:#A978E8" data-colour="#A978E8" aria-label="Purple"></button>
+              <button class="colour-btn" style="background:#FF8A3D" data-colour="#FF8A3D" aria-label="Orange"></button>
+            </div>
+          </div>
+
+          <div class="control-box">
+            <label for="frog-name-input">✏️ Name your frog</label>
+            <input id="frog-name-input" class="name-input" maxlength="18" placeholder="e.g. Jumpster">
+          </div>
+
+          <div class="shop-actions">
+            <button id="random-frog" class="btn btn-solid" type="button">🎲 Random Frog</button>
+            <button id="add-frog" class="btn btn-outline" type="button">🛍️ Add Frog</button>
+          </div>
+
+          <div class="random-result" id="random-result" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="cart-box">
+        <h3>🛒 Your Frog Cart</h3>
+        <div id="cart-items" class="empty-cart" aria-live="polite">Your cart is empty. Add a frog!</div>
+        <div class="cart-total"><span>Total frogs</span><span id="cart-count">0</span></div>
+        <div class="cart-total"><span>Total paper</span><span id="paper-total">0 sheets</span></div>
+        <div class="shop-actions" style="margin-top:14px;">
+          <button id="summary-btn" class="btn btn-solid" type="button">🧾 Show Order Summary</button>
+          <button id="cart-checkout-btn" class="btn btn-outline" type="button">🧾 Checkout</button>
+        </div>
+        <div id="order-summary" class="summary-box"></div>
+      </div>
+    </div>
+  </div></section><section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Questions?</span>
+      <h2>Frog FAQ</h2>
+      <p>Everything you probably wanted to know before adopting a tiny paper jumper.</p>
+    </div>
+    <div class="faq-grid">
+      <details class="faq-item">
+        <summary>How long does it take to get my frog?</summary>
+        <div class="faq-answer">Most frogs are made in small batches, so we'll let you know when yours is ready. Because every frog is folded by hand, please allow a little time for folding and testing.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I pick any colour paper?</summary>
+        <div class="faq-answer">Yep! Pick yellow, pink, or tell us your own colour. We'll do our best to use the paper you request.</div>
+      </details>
+      <details class="faq-item">
+        <summary>How many frogs can I order?</summary>
+        <div class="faq-answer">As many as you like! Add them to your cart in the Frog Lab and use the + and − buttons to change how many of each one you want. When you're happy, hit Checkout and your email app opens with the whole order ready to send.</div>
+      </details>
+      <details class="faq-item">
+        <summary>What is the difference between the frogs?</summary>
+        <div class="faq-answer">The Classic uses one sheet of A4/A5 paper. The Supa Jumper uses two sheets and has an extra-strong spring fold for a bigger jump.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Are the frogs really handmade?</summary>
+        <div class="faq-answer">Yes! TSPF frogs are folded by hand, with no glue or scissors, and each frog is tested before it is sold.</div>
+      </details>
+      <details class="faq-item">
+        <summary>How do I contact TSPF?</summary>
+        <div class="faq-answer">Email us at <a href="mailto:reach.tspf@gmail.com"><strong>reach.tspf@gmail.com</strong></a>.</div>
+      </details>
+    </div>
+  </div></section><section class="section" id="game">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Frog Arcade</span>
+      <h2>🐸 Fly Catcher</h2>
+      <p>Flies are buzzing around the pond — catch them before they escape. Miss too many and it's game over!</p>
+    </div>
+    <div class="frog-game">
+      <div class="game-top">
+        <h3>How many flies can you catch?</h3>
+        <div class="game-stats">
+          <div class="game-stat">Score: <span id="fc-score">0</span></div>
+          <div class="game-stat">Lives: <span id="fc-lives">❤️❤️❤️❤️❤️</span></div>
+          <div class="game-stat">Best: <span id="fc-best">0</span></div>
+        </div>
+      </div>
+      <div class="game-board" id="fc-board" tabindex="0" role="application" aria-label="Fly catching game area. Use left and right arrow keys to move the frog, and press space to catch a fly.">
+        <div class="lily glily1"></div>
+        <div class="lily glily2"></div>
+        <div class="lily glily3"></div>
+        <div class="catcher-frog" id="fc-frog">🐸</div>
+        <div class="game-overlay" id="fc-overlay">
+          <h3>🐸 Fly Catcher</h3>
+          <p>Enter a nickname to hop on the leaderboard!</p>
+          <input id="fc-nickname" class="name-input" style="max-width:220px;text-align:center;" maxlength="14" placeholder="Your nickname" autocomplete="off">
+          <button id="fc-start" class="btn btn-solid" type="button">▶️ Start Game</button>
+        </div>
+      </div>
+      <div class="game-message" id="fc-message" aria-live="polite">Click Start to begin!</div>
+      <div class="game-help">Flies get faster the longer you last. You've got 5 lives — Keyboard: ← → to move, Space/Enter to snap.</div>
+      <div style="text-align:center;margin-top:14px;">
+        <button id="fc-restart" class="btn btn-outline" type="button">🔄 Restart</button>
+      </div>
+
+      <div class="leaderboard-box">
+        <h3>🏆 Frog Pond Leaderboard</h3>
+        <p class="leaderboard-note">Top scores on this device — playing on a different phone or computer keeps its own list.</p>
+        <ol id="fc-leaderboard-list" class="leaderboard-list">
+          <li class="leaderboard-empty">No scores yet — be the first!</li>
+        </ol>
+      </div>
+    </div>
+  </div></section><section class="section" id="order">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Order Time</span>
+      <h2>Get your frog</h2>
+      <p>Three hops and your frogs are on their way. No forms, no fuss:</p>
+    </div>
+
+    <div class="about-grid" style="margin-bottom:36px;">
+      <div class="fold-card">
+        <span class="num">🛍️</span>
+        <h3>Fill your cart</h3>
+        <p>Head to the Frog Lab, pick a colour and model, name your frog and add it. Want three of the same? Tap the + button.</p>
+      </div>
+      <div class="fold-card">
+        <span class="num">🧾</span>
+        <h3>Check your pond</h3>
+        <p>Hit Checkout to see every frog you've picked, then tell us who you are and where to find you.</p>
+      </div>
+      <div class="fold-card">
+        <span class="num">📧</span>
+        <h3>Send the frog mail</h3>
+        <p>One tap opens your email app with the whole order already written out. Press send — done!</p>
+      </div>
+    </div>
+
+    <div class="order">
+      <div class="order-inner">
+        <h2>Ready to order?</h2>
+        <p>Prices — Classic: 1 sheet of A4/A5 paper &nbsp;•&nbsp; Supa Jumper: 2 sheets of A4/A5 paper.</p>
+        <div class="cta-row">
+          <button id="section-order-btn" type="button" class="btn btn-solid">🧾 Start My Order</button>
+        </div>
+      </div>
+    </div>
+  </div></section><footer>
+  <div class="brand tspf-logo" style="justify-content:center; display:flex;"><span class="tspf-logo-mark"></span><span class="tspf-logo-text">TSPF</span></div>
+  <div>The Supa Paper Frogs — folded with care, since 2026.</div>
+  <div class="footer-contact">Contact: <a href="mailto:reach.tspf@gmail.com">reach.tspf@gmail.com</a></div></footer>
+
+<div id="checkout-backdrop" class="checkout-backdrop" hidden>
+  <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+
+    <div class="checkout-head">
+      <div>
+        <h2 id="checkout-title">🧾 Check your pond</h2>
+        <p id="checkout-subtitle">Make sure these are the frogs you want, then tell us where to hop them.</p>
+      </div>
+      <button id="checkout-close" class="checkout-close" type="button" aria-label="Close checkout">✕</button>
+    </div>
+
+    <div id="checkout-stage-order">
+      <div class="checkout-review">
+        <h3>🐸 Your frogs</h3>
+        <div id="checkout-items"></div>
+        <div class="cart-total"><span>Total frogs</span><span id="checkout-count">0</span></div>
+        <div class="cart-total"><span>Total paper</span><span id="checkout-paper">0 sheets</span></div>
+      </div>
+
+      <form id="checkout-form" class="checkout-form" novalidate>
+        <h3>✏️ Tell us where to hop</h3>
+
+        <div class="field" id="field-name">
+          <label for="cust-name">Your name <span class="req">*</span></label>
+          <input id="cust-name" name="name" class="name-input" maxlength="60" autocomplete="name" placeholder="Who are we folding for?">
+          <div class="field-error">We need a name so we know whose frogs these are!</div>
+        </div>
+
+        <div class="field" id="field-email">
+          <label for="cust-email">Email <span class="req">*</span></label>
+          <input id="cust-email" name="email" type="email" class="name-input" maxlength="120" autocomplete="email" placeholder="you@example.com">
+          <div class="field-error">That email looks a bit wobbly — check it again?</div>
+        </div>
+
+        <div class="field" id="field-phone">
+          <label for="cust-phone">Phone <em style="font-weight:600;">(optional)</em></label>
+          <input id="cust-phone" name="phone" type="tel" class="name-input" maxlength="30" autocomplete="tel" placeholder="In case we need to croak at you">
+          <div class="field-error">Phone numbers use digits, spaces, + and - only.</div>
+        </div>
+
+        <div class="field" id="field-school">
+          <label for="cust-school">Class / Grade / School <span class="req">*</span></label>
+          <input id="cust-school" name="school" class="name-input" maxlength="80" placeholder="e.g. Grade 5B, Lilypad High">
+          <div class="field-error">Tell us your class so we can find you at handover!</div>
+        </div>
+
+        <div class="field" id="field-notes">
+          <label for="cust-notes">Any special frog wishes? <em style="font-weight:600;">(optional)</em></label>
+          <textarea id="cust-notes" name="notes" class="name-input" maxlength="500" placeholder="Glitter paper? A secret name? Tell us here."></textarea>
+        </div>
+
+        <div class="checkout-actions">
+          <button type="submit" class="btn btn-solid">📧 Place Order</button>
+          <button type="button" id="checkout-keep-shopping" class="btn btn-outline" style="color:var(--pond);border-color:var(--pond);box-shadow:4px 4px 0 var(--frog);">🛍️ Keep Shopping</button>
+        </div>
+        <p class="checkout-note">This opens your email app with the order already written out. Just press send!</p>
+      </form>
+    </div>
+
+    <div id="checkout-stage-empty" class="checkout-review checkout-empty" hidden>
+      <span style="font-size:2.4rem;display:block;margin-bottom:8px;">🌱</span>
+      <p>Your pond is empty! Hop over to the Frog Lab and pick a frog first.</p>
+      <button type="button" id="checkout-goto-lab" class="btn btn-outline">🐸 Go to the Frog Lab</button>
+    </div>
+
+    <div id="checkout-stage-done" class="checkout-done" hidden>
+      <span class="big-frog">🚀</span>
+      <h3>Your frog mail is ready to send!</h3>
+      <p>We popped your order into your email app. Hit <strong>send</strong> there and we'll start folding.</p>
+      <p class="checkout-note">Nothing opened? Email us directly at <a href="mailto:reach.tspf@gmail.com" style="text-decoration:underline;"><strong>reach.tspf@gmail.com</strong></a> — your cart is still saved.</p>
+      <div class="checkout-actions">
+        <button type="button" id="checkout-clear-cart" class="btn btn-solid">🧹 Clear My Cart</button>
+        <button type="button" id="checkout-done-close" class="btn btn-outline" style="color:var(--pond);border-color:var(--pond);box-shadow:4px 4px 0 var(--frog);">Keep My Cart</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+  // ============================================================
+  // CONFIG
+  // ============================================================
+  // Where every order email is addressed.
+  const ORDER_EMAIL = "reach.tspf@gmail.com";
+
+  const CART_STORAGE_KEY = "tspf_cart_v1";
+  const CUSTOMER_STORAGE_KEY = "tspf_customer_v1";
+
+  // Guard rail so a stuck key can't send us an order for 900 frogs.
+  const MAX_QTY_PER_LINE = 20;
+
+  // Paste your deployed Google Apps Script Web App URL here to turn the
+  // Fly Catcher leaderboard into a SHARED one — everyone who plays the site
+  // sees the same top-10 list. Leave this as an empty string ("") to keep
+  // scores local to each visitor's own browser instead (no setup needed).
+  // See the comment above the Apps Script code (ask Claude for it again if
+  // you need it) for the copy-pasteable backend script and deploy steps.
+  const LEADERBOARD_API_URL = ""; // e.g. "https://script.google.com/macros/s/AKfycb.../exec"
+
+  // ============================================================
+  // SOUND
+  // ============================================================
+  const frogSound = (() => {
+    let ctx;
+    return () => {
+      try {
+        ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(180, now);
+        osc.frequency.exponentialRampToValueAtTime(420, now + 0.12);
+        osc.frequency.exponentialRampToValueAtTime(170, now + 0.28);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.12, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.3);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.31);
+      } catch(e) {}
+    };
+  })();
+
+  document.querySelectorAll(".clickable-frog").forEach(frog => {
+    const jump = () => {
+      frogSound();
+      frog.classList.remove("jump");
+      void frog.offsetWidth;
+      frog.classList.add("jump");
+    };
+    frog.addEventListener("click", jump);
+    frog.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        jump();
+      }
+    });
+  });
+
+  // ============================================================
+  // TOAST
+  // ============================================================
+  let toastTimer;
+  function showToast(msg) {
+    const toast = document.getElementById("toast");
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
+  }
+
+  // ============================================================
+  // FROG LAB
+  // ============================================================
+  const customBody = document.getElementById("custom-body");
+  const customLight = document.getElementById("custom-light");
+  const customDark = document.getElementById("custom-dark");
+  const customHead = document.getElementById("custom-head");
+  const customHeadLight = document.getElementById("custom-head-light");
+  const frogNameInput = document.getElementById("frog-name-input");
+  const frogNamePreview = document.getElementById("frog-name-preview");
+  const frogTypeSelect = document.getElementById("frog-type-select");
+  const randomResult = document.getElementById("random-result");
+
+  let selectedColour = "#4F9F6B";
+
+  // ---- cart persistence ----
+  function loadCart() {
+    try {
+      const raw = localStorage.getItem(CART_STORAGE_KEY);
+      const parsed = raw ? JSON.parse(raw) : [];
+      if (!Array.isArray(parsed)) return [];
+      // Carts saved before quantities existed have no qty — treat those as 1
+      // so returning visitors don't find a broken cart.
+      return parsed.map(item => ({ ...item, qty: clampQty(item.qty) }));
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function clampQty(value) {
+    const n = parseInt(value, 10);
+    if (!Number.isFinite(n) || n < 1) return 1;
+    return Math.min(n, MAX_QTY_PER_LINE);
+  }
+  function saveCart() {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    } catch (e) {
+      // storage unavailable (private browsing etc) — cart still works for this session
+    }
+  }
+
+  let cart = loadCart();
+
+  function adjustBrightness(hex, percent) {
+    let num = parseInt(hex.replace("#", ""), 16),
+      amt = Math.round(2.55 * percent),
+      R = (num >> 16) + amt,
+      G = (num >> 8 & 0x00FF) + amt,
+      B = (num & 0x0000FF) + amt;
+    return "#" + (0x1000000 + (R < 255 ? R < 0 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 0 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 0 ? 0 : B : 255)).toString(16).slice(1);
+  }
+
+  function applyColour(hex) {
+    selectedColour = hex;
+    customBody.setAttribute("fill", hex);
+    customHead.setAttribute("fill", hex);
+    customLight.setAttribute("fill", adjustBrightness(hex, 15));
+    customHeadLight.setAttribute("fill", adjustBrightness(hex, 15));
+    customDark.setAttribute("fill", adjustBrightness(hex, -15));
+
+    document.querySelectorAll(".colour-btn").forEach(b => {
+      b.classList.toggle("selected", b.getAttribute("data-colour").toLowerCase() === hex.toLowerCase());
+    });
+  }
+
+  document.querySelectorAll(".colour-btn").forEach(btn => {
+    btn.addEventListener("click", () => applyColour(btn.getAttribute("data-colour")));
+  });
+
+  frogNameInput.addEventListener("input", (e) => {
+    frogNamePreview.textContent = e.target.value.trim() || "Your Frog";
+  });
+
+  const randomNames = ["Hopper", "Ribbitron", "Leapfrog", "Jumpy", "Bubble", "Ziggy", "Splash", "Supa-Hero"];
+  const randomColours = ["#4F9F6B", "#FFC64B", "#FF8FA3", "#6FA8FF", "#A978E8", "#FF8A3D"];
+
+  document.getElementById("random-frog").addEventListener("click", () => {
+    const randName = randomNames[Math.floor(Math.random() * randomNames.length)];
+    const randColour = randomColours[Math.floor(Math.random() * randomColours.length)];
+    const randModel = Math.random() > 0.5 ? "Classic" : "Supa Jumper";
+
+    applyColour(randColour);
+    frogNameInput.value = randName;
+    frogNamePreview.textContent = randName;
+    frogTypeSelect.value = randModel;
+    randomResult.textContent = `🎲 Generated: ${randName} (${randModel})!`;
+  });
+
+  document.getElementById("add-frog").addEventListener("click", () => {
+    const name = frogNameInput.value.trim() || "Unnamed Frog";
+    const selectedModel = frogTypeSelect.value;
+    const sheets = parseInt(frogTypeSelect.options[frogTypeSelect.selectedIndex].getAttribute("data-sheets"));
+
+    // An identical frog bumps the existing line's quantity instead of
+    // stacking up duplicate rows.
+    const twin = cart.find(i =>
+      i.name === name && i.model === selectedModel && i.colour === selectedColour
+    );
+
+    if (twin) {
+      if (twin.qty >= MAX_QTY_PER_LINE) {
+        showToast(`That's already ${MAX_QTY_PER_LINE} ${name}s — that's a lot of folding!`);
+        return;
+      }
+      twin.qty += 1;
+      saveCart();
+      updateCartUI();
+      showToast(`Another ${name} joins the pond! (×${twin.qty}) 🐸`);
+      return;
+    }
+
+    cart.push({ id: Date.now() + Math.random(), name, colour: selectedColour, model: selectedModel, sheets, qty: 1 });
+    saveCart();
+    updateCartUI();
+    showToast(`Added ${name} to your cart! 🐸`);
+  });
+
+  function findCartItem(id) {
+    return cart.find(i => String(i.id) === String(id));
+  }
+
+  function removeFromCart(id) {
+    const item = findCartItem(id);
+    cart = cart.filter(i => String(i.id) !== String(id));
+    saveCart();
+    updateCartUI();
+    if (item) showToast(`Removed ${item.name} from your cart.`);
+  }
+
+  function changeQty(id, delta) {
+    const item = findCartItem(id);
+    if (!item) return;
+
+    const next = item.qty + delta;
+
+    if (next < 1) {
+      removeFromCart(id);
+      return;
+    }
+    if (next > MAX_QTY_PER_LINE) {
+      showToast(`${MAX_QTY_PER_LINE} is our max per frog — that's a lot of folding!`);
+      return;
+    }
+
+    item.qty = next;
+    saveCart();
+    updateCartUI();
+  }
+
+  function totalFrogs() {
+    return cart.reduce((sum, item) => sum + item.qty, 0);
+  }
+  function totalSheets() {
+    return cart.reduce((sum, item) => sum + item.sheets * item.qty, 0);
+  }
+  function sheetsLabel(n) {
+    return `${n} sheet${n === 1 ? "" : "s"}`;
+  }
+
+  function cartLinesHtml() {
+    return cart.map(item => `
+      <div class="cart-line">
+        <div class="cart-line-info">
+          <span>🐸 ${escapeHtml(item.name)} (${escapeHtml(item.model)})</span>
+          <span class="cart-line-swatch" style="color:${escapeHtml(item.colour)};">● ${sheetsLabel(item.sheets)} each</span>
+        </div>
+        <div class="cart-line-actions">
+          <div class="qty-stepper">
+            <button class="qty-btn" type="button" data-qty-delta="-1" data-id="${escapeHtml(item.id)}" aria-label="One less ${escapeHtml(item.name)}">−</button>
+            <span class="qty-value" aria-label="${escapeHtml(item.qty)} of ${escapeHtml(item.name)}">${escapeHtml(item.qty)}</span>
+            <button class="qty-btn" type="button" data-qty-delta="1" data-id="${escapeHtml(item.id)}" ${item.qty >= MAX_QTY_PER_LINE ? "disabled" : ""} aria-label="One more ${escapeHtml(item.name)}">+</button>
+          </div>
+          <button class="remove-frog-btn" type="button" data-remove-id="${escapeHtml(item.id)}" aria-label="Remove ${escapeHtml(item.name)} from cart">✕</button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // One delegated listener covers the Frog Lab cart and the checkout review,
+  // so both stay in sync without duplicating handlers.
+  document.addEventListener("click", (e) => {
+    const qtyBtn = e.target.closest("[data-qty-delta]");
+    if (qtyBtn) {
+      changeQty(qtyBtn.getAttribute("data-id"), parseInt(qtyBtn.getAttribute("data-qty-delta"), 10));
+      return;
+    }
+    const removeBtn = e.target.closest("[data-remove-id]");
+    if (removeBtn) removeFromCart(removeBtn.getAttribute("data-remove-id"));
+  });
+
+  function updateCartUI() {
+    const cartItems = document.getElementById("cart-items");
+    const cartCount = document.getElementById("cart-count");
+    const paperTotal = document.getElementById("paper-total");
+
+    if (cart.length === 0) {
+      cartItems.innerHTML = "Your cart is empty. Add a frog!";
+      cartItems.classList.add("empty-cart");
+      paperTotal.textContent = "0 sheets";
+    } else {
+      cartItems.classList.remove("empty-cart");
+      cartItems.innerHTML = cartLinesHtml();
+      paperTotal.textContent = sheetsLabel(totalSheets());
+    }
+
+    cartCount.textContent = totalFrogs();
+
+    // keep the open summary box and checkout modal in step with the cart
+    const summaryBox = document.getElementById("order-summary");
+    if (summaryBox.classList.contains("show")) renderSummary();
+    renderCheckout();
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, c => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[c]));
+  }
+
+  function buildOrderSummaryText() {
+    if (cart.length === 0) return "No frogs added yet.";
+    return cart.map((item, idx) =>
+      `${idx + 1}. ${item.name} ×${item.qty} [Model: ${item.model}, Colour: ${item.colour}, Paper: ${item.sheets * item.qty} sheet(s)]`
+    ).join(" | ");
+  }
+
+  function renderSummary() {
+    const summaryBox = document.getElementById("order-summary");
+    if (cart.length === 0) {
+      summaryBox.innerHTML = "<h3>Order Summary</h3><p>Add at least one frog to view your summary.</p>";
+      return;
+    }
+    summaryBox.innerHTML = `
+      <h3>🧾 Order Summary</h3>
+      <p>Total Frogs: <strong>${totalFrogs()}</strong></p>
+      <p>Total Paper Required: <strong>${sheetsLabel(totalSheets())}</strong></p>
+      <div style="margin-top:10px; padding:10px; background:rgba(255,255,255,0.4); border-radius:8px; font-size:0.9rem;">
+        <strong>Cart Items:</strong><br>${escapeHtml(buildOrderSummaryText())}
+      </div>
+      <p class="copy-hint"><em>Happy with these? Hit "Checkout" to send them to us.</em></p>
+    `;
+  }
+
+  document.getElementById("summary-btn").addEventListener("click", () => {
+    renderSummary();
+    document.getElementById("order-summary").classList.toggle("show");
+  });
+
+  // ============================================================
+  // CHECKOUT
+  // ============================================================
+  const checkoutBackdrop = document.getElementById("checkout-backdrop");
+  const checkoutModal = checkoutBackdrop.querySelector(".checkout-modal");
+  const checkoutForm = document.getElementById("checkout-form");
+  const stageOrder = document.getElementById("checkout-stage-order");
+  const stageEmpty = document.getElementById("checkout-stage-empty");
+  const stageDone = document.getElementById("checkout-stage-done");
+  const checkoutTitle = document.getElementById("checkout-title");
+  const checkoutSubtitle = document.getElementById("checkout-subtitle");
+
+  const FIELDS = {
+    name: { input: document.getElementById("cust-name"), field: document.getElementById("field-name") },
+    email: { input: document.getElementById("cust-email"), field: document.getElementById("field-email") },
+    phone: { input: document.getElementById("cust-phone"), field: document.getElementById("field-phone") },
+    school: { input: document.getElementById("cust-school"), field: document.getElementById("field-school") },
+    notes: { input: document.getElementById("cust-notes"), field: document.getElementById("field-notes") },
+  };
+
+  let lastFocusedTrigger = null;
+  let checkoutStage = "order"; // order | empty | done
+
+  // ---- customer details persistence ----
+  function loadCustomer() {
+    try {
+      const raw = localStorage.getItem(CUSTOMER_STORAGE_KEY);
+      const parsed = raw ? JSON.parse(raw) : null;
+      if (!parsed || typeof parsed !== "object") return;
+      Object.keys(FIELDS).forEach(key => {
+        if (typeof parsed[key] === "string") FIELDS[key].input.value = parsed[key];
+      });
+    } catch (e) {
+      // no saved details, or storage unavailable — start with a blank form
+    }
+  }
+  function saveCustomer(details) {
+    try {
+      localStorage.setItem(CUSTOMER_STORAGE_KEY, JSON.stringify(details));
+    } catch (e) {}
+  }
+  loadCustomer();
+
+  function readCustomer() {
+    const out = {};
+    Object.keys(FIELDS).forEach(key => { out[key] = FIELDS[key].input.value.trim(); });
+    return out;
+  }
+
+  // ---- validation ----
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const PHONE_RE = /^[0-9+\-\s()]{6,}$/;
+
+  function fieldIsValid(key, value) {
+    if (key === "name") return value.length > 0;
+    if (key === "school") return value.length > 0;
+    if (key === "email") return EMAIL_RE.test(value);
+    if (key === "phone") return value === "" || PHONE_RE.test(value);
+    return true;
+  }
+
+  function markField(key, valid) {
+    FIELDS[key].field.classList.toggle("invalid", !valid);
+    FIELDS[key].input.setAttribute("aria-invalid", valid ? "false" : "true");
+  }
+
+  function validateCheckout({ focusFirstError = false } = {}) {
+    const details = readCustomer();
+    let firstBad = null;
+
+    ["name", "email", "phone", "school"].forEach(key => {
+      const valid = fieldIsValid(key, details[key]);
+      markField(key, valid);
+      if (!valid && !firstBad) firstBad = key;
+    });
+
+    if (firstBad && focusFirstError) FIELDS[firstBad].input.focus();
+    return { valid: !firstBad, details };
+  }
+
+  // re-check a field once the visitor has had a go at fixing it
+  ["name", "email", "phone", "school"].forEach(key => {
+    FIELDS[key].input.addEventListener("blur", () => {
+      markField(key, fieldIsValid(key, FIELDS[key].input.value.trim()));
+    });
+    FIELDS[key].input.addEventListener("input", () => {
+      if (FIELDS[key].field.classList.contains("invalid")) {
+        markField(key, fieldIsValid(key, FIELDS[key].input.value.trim()));
+      }
+    });
+  });
+
+  // ---- rendering ----
+  function renderCheckout() {
+    if (checkoutBackdrop.hidden) return;
+
+    if (checkoutStage === "done") {
+      setStage("done");
+      return;
+    }
+    if (cart.length === 0) {
+      setStage("empty");
+      return;
+    }
+
+    setStage("order");
+    document.getElementById("checkout-items").innerHTML = cartLinesHtml();
+    document.getElementById("checkout-count").textContent = totalFrogs();
+    document.getElementById("checkout-paper").textContent = sheetsLabel(totalSheets());
+  }
+
+  function setStage(stage) {
+    checkoutStage = stage;
+    stageOrder.hidden = stage !== "order";
+    stageEmpty.hidden = stage !== "empty";
+    stageDone.hidden = stage !== "done";
+
+    if (stage === "empty") {
+      checkoutTitle.textContent = "🌱 Nothing in the pond yet";
+      checkoutSubtitle.textContent = "Pick a frog in the Frog Lab and come back!";
+    } else if (stage === "done") {
+      checkoutTitle.textContent = "📧 Off it hops!";
+      checkoutSubtitle.textContent = "Your order is waiting in your email app.";
+    } else {
+      checkoutTitle.textContent = "🧾 Check your pond";
+      checkoutSubtitle.textContent = "Make sure these are the frogs you want, then tell us where to hop them.";
+    }
+  }
+
+  // ---- open / close ----
+  function openCheckout(trigger) {
+    // Nothing to check out yet — send them somewhere useful instead of
+    // opening an empty dialog.
+    if (cart.length === 0) {
+      showToast("Your pond is empty — pick a frog first! 🐸");
+      document.getElementById("frog-lab").scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+
+    lastFocusedTrigger = trigger || document.activeElement;
+    checkoutStage = "order";
+    checkoutBackdrop.hidden = false;
+    document.body.style.overflow = "hidden";
+    renderCheckout();
+
+    const firstEmpty = ["name", "email", "school"].find(key => !FIELDS[key].input.value.trim());
+    (firstEmpty ? FIELDS[firstEmpty].input : document.getElementById("checkout-close")).focus();
+  }
+
+  function closeCheckout() {
+    checkoutBackdrop.hidden = true;
+    document.body.style.overflow = "";
+    checkoutStage = "order";
+    if (lastFocusedTrigger && document.contains(lastFocusedTrigger)) lastFocusedTrigger.focus();
+    lastFocusedTrigger = null;
+  }
+
+  document.getElementById("cart-checkout-btn").addEventListener("click", (e) => openCheckout(e.currentTarget));
+  document.getElementById("hero-order-btn").addEventListener("click", (e) => openCheckout(e.currentTarget));
+  document.getElementById("section-order-btn").addEventListener("click", (e) => openCheckout(e.currentTarget));
+  document.getElementById("checkout-close").addEventListener("click", closeCheckout);
+  document.getElementById("checkout-done-close").addEventListener("click", closeCheckout);
+  document.getElementById("checkout-keep-shopping").addEventListener("click", () => {
+    closeCheckout();
+    document.getElementById("frog-lab").scrollIntoView({ behavior: "smooth" });
+  });
+  document.getElementById("checkout-goto-lab").addEventListener("click", () => {
+    closeCheckout();
+    document.getElementById("frog-lab").scrollIntoView({ behavior: "smooth" });
+  });
+  document.getElementById("checkout-clear-cart").addEventListener("click", () => {
+    cart = [];
+    saveCart();
+    closeCheckout();
+    updateCartUI();
+    showToast("Cart cleared. Thanks for your order! 🐸");
+  });
+
+  // clicking the dark area outside the card closes it
+  checkoutBackdrop.addEventListener("mousedown", (e) => {
+    if (e.target === checkoutBackdrop) closeCheckout();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (checkoutBackdrop.hidden) return;
+
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closeCheckout();
+      return;
+    }
+
+    if (e.key !== "Tab") return;
+
+    // keep tabbing inside the dialog while it's open
+    const focusable = Array.from(
+      checkoutModal.querySelectorAll('button, input, textarea, select, a[href], [tabindex]:not([tabindex="-1"])')
+    ).filter(el => !el.disabled && el.offsetParent !== null);
+    if (focusable.length === 0) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+
+  // ---- the email handoff ----
+  function buildOrderEmail(details) {
+    const frogs = totalFrogs();
+    const subject = `TSPF Order — ${frogs} frog${frogs === 1 ? "" : "s"} for ${details.name} 🐸`;
+
+    const lines = [
+      "Hello TSPF!",
+      "",
+      "I'd like to order these frogs:",
+      "",
+    ];
+
+    cart.forEach((item, idx) => {
+      lines.push(`${idx + 1}. ${item.name} ×${item.qty}`);
+      lines.push(`   Model: ${item.model}`);
+      lines.push(`   Colour: ${item.colour}`);
+      lines.push(`   Paper: ${item.sheets * item.qty} sheet(s)`);
+    });
+
+    lines.push(
+      "",
+      `Total frogs: ${frogs}`,
+      `Total paper: ${sheetsLabel(totalSheets())}`,
+      "",
+      "--- My details ---",
+      `Name: ${details.name}`,
+      `Email: ${details.email}`,
+      `Phone: ${details.phone || "—"}`,
+      `Class / Grade / School: ${details.school}`,
+      `Notes: ${details.notes || "—"}`,
+      "",
+      "Thank you!",
+      details.name
+    );
+
+    return `mailto:${ORDER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+  }
+
+  checkoutForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if (cart.length === 0) {
+      renderCheckout();
+      return;
+    }
+
+    const { valid, details } = validateCheckout({ focusFirstError: true });
+    if (!valid) {
+      showToast("Just a couple of details missing! 👀");
+      return;
+    }
+
+    saveCustomer(details);
+    window.location.href = buildOrderEmail(details);
+
+    // The cart stays put — a mailto can't tell us the mail was actually sent,
+    // so clearing it here could quietly lose the order.
+    checkoutStage = "done";
+    renderCheckout();
+    document.getElementById("checkout-done-close").focus();
+  });
+
+  // initial paint (in case a saved cart was restored from localStorage)
+  updateCartUI();
+
+  // ============================================================
+  // FLY CATCHER GAME
+  // ============================================================
+  (function() {
+    const BEST_KEY = "tspf_flycatcher_best";
+    const NICKNAME_KEY = "tspf_flycatcher_nickname";
+    const LEADERBOARD_KEY = "tspf_flycatcher_leaderboard";
+    const CLIENT_ID_KEY = "tspf_flycatcher_client_id";
+    const MAX_LEADERBOARD_ENTRIES = 10;
+    const STARTING_LIVES = 5;
+    const MOVE_STEP = 32; // px per arrow-key press
+    const SNAP_RANGE = 65; // px — how close the frog's tongue reaches
+    const FLY_LIFETIME = 1600; // ms a fly stays before escaping
+
+    const board = document.getElementById("fc-board");
+    const overlay = document.getElementById("fc-overlay");
+    const startBtn = document.getElementById("fc-start");
+    const restartBtn = document.getElementById("fc-restart");
+    const nicknameInput = document.getElementById("fc-nickname");
+    const leaderboardList = document.getElementById("fc-leaderboard-list");
+    const leaderboardNoteEl = document.querySelector(".leaderboard-note");
+    const scoreEl = document.getElementById("fc-score");
+    const livesEl = document.getElementById("fc-lives");
+    const bestEl = document.getElementById("fc-best");
+    const messageEl = document.getElementById("fc-message");
+    const catcherFrog = document.getElementById("fc-frog");
+
+    let score = 0;
+    let lives = STARTING_LIVES;
+    let spawnTimer = null;
+    let flySpeed = 1400; // ms between spawns, decreases over time as difficulty ramps up
+    let running = false;
+    let frogX = 0; // current frog centre position in px, used by both mouse and keyboard
+
+    function getBest() {
+      try { return parseInt(localStorage.getItem(BEST_KEY)) || 0; } catch(e) { return 0; }
+    }
+    function setBest(val) {
+      try { localStorage.setItem(BEST_KEY, val); } catch(e) {}
+    }
+    bestEl.textContent = getBest();
+
+    // ---- nickname ----
+    function getSavedNickname() {
+      try { return localStorage.getItem(NICKNAME_KEY) || ""; } catch(e) { return ""; }
+    }
+    function saveNickname(name) {
+      try { localStorage.setItem(NICKNAME_KEY, name); } catch(e) {}
+    }
+    nicknameInput.value = getSavedNickname();
+
+    // ---- leaderboard ----
+    // A per-browser id so we can highlight "your" row even when names tie.
+    function getClientId() {
+      let id;
+      try { id = localStorage.getItem(CLIENT_ID_KEY); } catch(e) {}
+      if (!id) {
+        id = "c_" + Math.random().toString(36).slice(2) + Date.now().toString(36);
+        try { localStorage.setItem(CLIENT_ID_KEY, id); } catch(e) {}
+      }
+      return id;
+    }
+
+    // Local cache: used as the whole leaderboard when no backend is
+    // configured, and as an offline fallback when the backend is
+    // unreachable so a network hiccup never loses a score.
+    function getLocalLeaderboardCache() {
+      try {
+        const raw = localStorage.getItem(LEADERBOARD_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+      } catch(e) { return []; }
+    }
+    function cacheLocalLeaderboard(entries) {
+      try { localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(entries)); } catch(e) {}
+    }
+    function addToLocalLeaderboard(name, points, clientId) {
+      const entries = getLocalLeaderboardCache();
+      entries.push({ name, score: points, clientId, ts: Date.now() });
+      entries.sort((a, b) => b.score - a.score);
+      const trimmed = entries.slice(0, MAX_LEADERBOARD_ENTRIES);
+      cacheLocalLeaderboard(trimmed);
+      return trimmed;
+    }
+
+    function renderLeaderboard(entries, myClientId) {
+      if (!entries || entries.length === 0) {
+        leaderboardList.innerHTML = '<li class="leaderboard-empty">No scores yet — be the first!</li>';
+        return;
+      }
+      const sorted = entries.slice().sort((a, b) => b.score - a.score).slice(0, MAX_LEADERBOARD_ENTRIES);
+      leaderboardList.innerHTML = sorted.map((e, i) => `
+        <li class="${myClientId && e.clientId === myClientId ? "you" : ""}">
+          <span class="leaderboard-rank">#${i + 1}</span>
+          <span class="leaderboard-name">${escapeHtml(e.name)}</span>
+          <span class="leaderboard-score">${e.score}</span>
+        </li>
+      `).join("");
+    }
+
+    // Fetches the current leaderboard on page load. Uses the shared
+    // backend if LEADERBOARD_API_URL is set, otherwise reads local cache.
+    async function loadLeaderboard() {
+      const myId = getClientId();
+      if (!LEADERBOARD_API_URL) {
+        renderLeaderboard(getLocalLeaderboardCache(), myId);
+        return;
+      }
+      leaderboardList.innerHTML = '<li class="leaderboard-empty">Loading scores…</li>';
+      try {
+        const res = await fetch(LEADERBOARD_API_URL);
+        const data = await res.json();
+        if (data && Array.isArray(data.leaderboard)) {
+          cacheLocalLeaderboard(data.leaderboard);
+          renderLeaderboard(data.leaderboard, myId);
+          return;
+        }
+        throw new Error("Unexpected response");
+      } catch (err) {
+        const cached = getLocalLeaderboardCache();
+        if (cached.length) {
+          renderLeaderboard(cached, myId);
+        } else {
+          leaderboardList.innerHTML = '<li class="leaderboard-empty">Couldn\'t load scores — check your connection.</li>';
+        }
+      }
+    }
+
+    // Submits a finished round's score. Posts to the shared backend when
+    // configured; always falls back to the local cache so nothing is lost
+    // if the network request fails or no backend is set up.
+    async function submitScore(name, points) {
+      const clientId = getClientId();
+      if (LEADERBOARD_API_URL) {
+        try {
+          const res = await fetch(LEADERBOARD_API_URL, {
+            method: "POST",
+            // text/plain avoids a CORS preflight against Apps Script
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify({ name, score: points, clientId })
+          });
+          const data = await res.json();
+          if (data && Array.isArray(data.leaderboard)) {
+            cacheLocalLeaderboard(data.leaderboard);
+            return { entries: data.leaderboard, clientId };
+          }
+          throw new Error("Unexpected response");
+        } catch (err) {
+          // fall through to local fallback below
+        }
+      }
+      const entries = addToLocalLeaderboard(name, points, clientId);
+      return { entries, clientId };
+    }
+
+    if (LEADERBOARD_API_URL) {
+      leaderboardNoteEl.textContent = "Shared leaderboard — everyone who plays this site sees the same list.";
+    }
+    loadLeaderboard();
+
+    let currentNickname = getSavedNickname();
+
+    function renderLives() {
+      livesEl.textContent = "❤️".repeat(Math.max(0, lives)) + "🤍".repeat(Math.max(0, STARTING_LIVES - lives));
+    }
+    renderLives();
+
+    function randomRange(min, max) { return Math.random() * (max - min) + min; }
+
+    function boardWidth() {
+      return board.getBoundingClientRect().width || 300;
+    }
+
+    function moveFrogTo(x) {
+      const max = boardWidth() - 10;
+      frogX = Math.max(10, Math.min(max, x));
+      catcherFrog.style.left = frogX + "px";
+      catcherFrog.style.transform = "translateX(-50%)";
+    }
+
+    function lickFrog(x) {
+      moveFrogTo(x);
+      catcherFrog.style.transform = "translateX(-50%) scale(1.12)";
+      catcherFrog.classList.add("lick");
+      setTimeout(() => catcherFrog.classList.remove("lick"), 120);
+      frogSound();
+    }
+
+    const encouragements = ["Nice catch! 🐸", "Zap!", "Quick tongue!", "Keep going!", "Great reflexes!"];
+    function pickEncouragement() {
+      return encouragements[Math.floor(Math.random() * encouragements.length)];
+    }
+
+    function catchFly(fly) {
+      if (!running || fly.classList.contains("zapped")) return;
+      clearTimeout(fly._escapeTimer);
+      fly.classList.add("zapped");
+      score++;
+      scoreEl.textContent = score;
+      const fx = parseFloat(fly.style.left) + 13;
+      lickFrog(fx);
+      messageEl.textContent = pickEncouragement();
+      setTimeout(() => fly.remove(), 200);
+    }
+
+    function loseLife(reason) {
+      if (!running) return;
+      lives--;
+      renderLives();
+      if (lives <= 0) {
+        endGame();
+      } else {
+        messageEl.textContent = reason || "A fly got away!";
+      }
+    }
+
+    function trySnap() {
+      if (!running) return;
+      const flies = Array.from(board.querySelectorAll(".fly:not(.zapped)"));
+      let closest = null, closestDist = Infinity;
+      flies.forEach(f => {
+        const fx = parseFloat(f.style.left) + 13;
+        const dist = Math.abs(fx - frogX);
+        if (dist < SNAP_RANGE && dist < closestDist) { closest = f; closestDist = dist; }
+      });
+      if (closest) {
+        catchFly(closest);
+      } else {
+        lickFrog(frogX);
+        messageEl.textContent = "Missed — try again!";
+      }
+    }
+
+    function spawnFly() {
+      if (!running) return;
+      const boardRect = board.getBoundingClientRect();
+      const fly = document.createElement("div");
+      fly.className = "fly";
+      fly.textContent = "🪰";
+      const maxX = Math.max(20, boardRect.width - 40);
+      const maxY = Math.max(20, boardRect.height - 90);
+      const x = randomRange(10, maxX);
+      const y = randomRange(10, maxY);
+      fly.style.left = x + "px";
+      fly.style.top = y + "px";
+
+      fly._escapeTimer = setTimeout(() => {
+        if (fly.parentNode) {
+          fly.remove();
+          loseLife("A fly got away! 🪰");
+        }
+      }, FLY_LIFETIME);
+
+      fly.addEventListener("click", (e) => {
+        e.stopPropagation();
+        catchFly(fly);
+      });
+
+      board.appendChild(fly);
+
+      // ramp difficulty: spawn a bit faster with every fly, floor at 550ms
+      flySpeed = Math.max(550, flySpeed - 12);
+      spawnTimer = setTimeout(spawnFly, flySpeed);
+    }
+
+    function clearFlies() {
+      board.querySelectorAll(".fly").forEach(f => {
+        clearTimeout(f._escapeTimer);
+        f.remove();
+      });
+    }
+
+    function startGame() {
+      score = 0;
+      lives = STARTING_LIVES;
+      flySpeed = 1400;
+      scoreEl.textContent = "0";
+      renderLives();
+      messageEl.textContent = "Go go go!";
+      overlay.classList.add("hidden");
+      clearFlies();
+      moveFrogTo(boardWidth() / 2);
+      running = true;
+      spawnFly();
+      board.focus();
+    }
+
+    function validateAndStart() {
+      const nickField = document.getElementById("fc-nickname");
+      if (nickField) {
+        const name = nickField.value.trim();
+        if (!name) {
+          messageEl.textContent = "Enter a nickname to play!";
+          nickField.focus();
+          return;
+        }
+        currentNickname = name;
+        saveNickname(name);
+      }
+      startGame();
+    }
+
+    function endGame() {
+      running = false;
+      clearTimeout(spawnTimer);
+      clearFlies();
+
+      const best = getBest();
+      if (score > best) {
+        setBest(score);
+        bestEl.textContent = score;
+      }
+
+      const displayName = currentNickname || "Anonymous Frog";
+
+      overlay.classList.remove("hidden");
+      overlay.innerHTML = `
+        <h3>🐸 Out of Lives!</h3>
+        <p>${escapeHtml(displayName)} caught <strong>${score}</strong> fl${score === 1 ? "y" : "ies"}. Best: ${getBest()}.</p>
+        <button id="fc-start" class="btn btn-solid" type="button">🔄 Play Again</button>
+      `;
+      document.getElementById("fc-start").addEventListener("click", startGame);
+
+      leaderboardList.innerHTML = '<li class="leaderboard-empty">Saving your score…</li>';
+      submitScore(displayName, score).then(({ entries, clientId }) => {
+        renderLeaderboard(entries, clientId);
+      });
+    }
+
+    startBtn.addEventListener("click", validateAndStart);
+    nicknameInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        validateAndStart();
+      }
+    });
+    restartBtn.addEventListener("click", () => {
+      clearTimeout(spawnTimer);
+      clearFlies();
+      startGame();
+    });
+
+    // ---- keyboard controls: arrows move the frog, space/enter snaps ----
+    board.addEventListener("keydown", (e) => {
+      if (!running) return;
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        moveFrogTo(frogX - MOVE_STEP);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        moveFrogTo(frogX + MOVE_STEP);
+      } else if (e.key === " " || e.key === "Spacebar" || e.key === "Enter") {
+        e.preventDefault();
+        trySnap();
+      }
+    });
+
+    // keep the frog roughly centred if the board resizes before a game starts
+    moveFrogTo(boardWidth() / 2);
+  })();
+</script>
+</body>
+</html>

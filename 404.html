@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hopped away — TSPF</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/the-supa-paper-frogs/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Quicksand:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6EFD9;
+    --frog:#4F9F6B;
+    --frog-dark:#256B45;
+    --pond:#1E3D2F;
+    --pop:#FFC64B;
+    --ink:#22331E;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:24px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Quicksand', sans-serif;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(79,159,107,0.06) 0, transparent 45%),
+      radial-gradient(circle at 85% 60%, rgba(255,198,75,0.08) 0, transparent 40%);
+  }
+  .box{max-width:520px;}
+  .frog{width:150px; height:auto; margin:0 auto 24px; display:block; animation:hop 1.8s ease-in-out infinite;}
+  @keyframes hop{
+    0%,60%,100%{transform:translateY(0) rotate(0deg);}
+    70%{transform:translateY(-18px) rotate(-4deg);}
+    85%{transform:translateY(0) rotate(2deg);}
+  }
+  @media (prefers-reduced-motion: reduce){ .frog{animation:none;} }
+  h1{font-family:'Baloo 2', sans-serif; color:var(--pond); font-size:clamp(2rem, 8vw, 3rem); line-height:1.1;}
+  .code{font-family:'Baloo 2', sans-serif; color:var(--frog); font-size:clamp(3.5rem, 16vw, 6rem); line-height:1;}
+  p{margin:16px 0 28px; font-size:1.05rem; font-weight:600;}
+  a.btn{
+    display:inline-block;
+    background:var(--pop);
+    color:var(--pond);
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:1.1rem;
+    padding:14px 28px;
+    border-radius:999px;
+    text-decoration:none;
+    box-shadow:0 4px 0 #E8A317;
+    transition:transform .15s ease;
+  }
+  a.btn:hover{transform:translateY(-2px);}
+  a.btn:active{transform:translateY(2px); box-shadow:0 2px 0 #E8A317;}
+</style>
+</head>
+<body>
+  <main class="box">
+    <svg class="frog" viewBox="0 0 120 90" role="img" aria-label="A paper frog">
+      <ellipse cx="60" cy="58" rx="42" ry="26" fill="#4F9F6B"/>
+      <path d="M18 58 L60 30 L102 58 Z" fill="#256B45"/>
+      <circle cx="44" cy="40" r="10" fill="#FFFDF6"/>
+      <circle cx="76" cy="40" r="10" fill="#FFFDF6"/>
+      <circle cx="44" cy="41" r="4.5" fill="#22331E"/>
+      <circle cx="76" cy="41" r="4.5" fill="#22331E"/>
+      <path d="M48 66 Q60 74 72 66" stroke="#1E3D2F" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="code">404</div>
+    <h1>This frog hopped away</h1>
+    <p>That page is not in the pond. Maybe it folded itself into something else.</p>
+    <a class="btn" href="/the-supa-paper-frogs/">Hop back home</a>
+  </main>
+</body>
+</html>
